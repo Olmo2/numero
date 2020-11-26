@@ -2,6 +2,7 @@ package com.olmo.numero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int r;
     int n=-1;
     int contador = 0;
+    int restante;
 
     Context context;
     CharSequence text;
@@ -33,10 +35,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Toast toast;
 
 
+
+
+    AlertDialog.Builder alerta;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Dialogo normal
+        alerta = new AlertDialog.Builder(this);
+        alerta.setTitle("BLOC DE NOTAS");
+        alerta.setMessage("Vamos a probar cómo se guardan notas en una base de datos con SQLite");
+        alerta.setPositiveButton("OK",null);
+
+
+
+
 
         botonComprobar = (Button) findViewById(R.id.buttonComprobar);
         botonComprobar.setOnClickListener(this);
@@ -75,19 +92,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonComprobar:
                 if(numero.getText().toString().equals("") || numero.getText().toString().equals(null)) {
                     text = "Introduce un número entre 1 y 1000";
+                    toast = Toast.makeText(context, text, duration);
+                    toast.show();
                     } else {
-                    System.out.println("lol" + numero.getText().toString());
                     n = Integer.parseInt(numero.getText().toString());
                     if (n > 0 && n < 1001) {
                         if (checkNumber(n)) {
                             solucion.setText("La solucion es: " + r);
-                            text = "¡Número Correcto!";
+                            alerta.setTitle("¡VICTORIA!");
+                            alerta.setMessage("¡Número correcto!");
                             victoria.setText("¡Victoria!");
                         } else {
-                            text = "Número incorrecto";
+
                             contador++;
+                            restante = 5-contador;
+                            alerta.setTitle("Número Incorrecto :( ");
+                            alerta.setMessage("Prueba otra vez, te quedan " + restante  + "intnetos");
                             textoContador.setText("Llevas: " + contador + " intentos");
                             if(contador>=5){
+                                alerta.setTitle("DERROTA");
+                                alerta.setMessage("Se te acabaron los intentos :( " + "La solucion era: " + r);
                                 solucion.setText("La solucion era: " + r);
                                 victoria.setText("DERROTA, Alcanzaste el número máximo de intentos :(");
                             }
@@ -96,8 +120,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     }
 
-                    toast = Toast.makeText(context, text, duration);
-                    toast.show();
+
+                alerta.create();
+                alerta.show();
+
 
                 break;
             case R.id.buttonGenerarNumero:
