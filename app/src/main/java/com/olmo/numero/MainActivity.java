@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonComprobar.setOnClickListener(this);
         botonSalir = (Button) findViewById(R.id.buttonSalir);
         botonSalir.setOnClickListener(this);
-        botonMostrar = (Button) findViewById(R.id.buttonMostrarSolucion);
+        botonMostrar = (Button) findViewById(R.id.buttonGenerarNumero);
         botonMostrar.setOnClickListener(this);
 
         numero  = (EditText) findViewById(R.id.numero);
@@ -50,14 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textoContador  = (TextView) findViewById(R.id.contador);
         victoria  = (TextView) findViewById(R.id.victoria);
 
-        r =(int)(Math.random()*(max-min+1)+min);
-        System.out.println(r);
+
 
         context = getApplicationContext();
-        text = String.valueOf(r);
         duration = Toast.LENGTH_SHORT;
-        toast = Toast.makeText(context, text, duration);
-        toast.show();
+
 
 
     }
@@ -103,8 +100,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     toast.show();
 
                 break;
-            case R.id.buttonMostrarSolucion:
-                solucion.setText("La solucion era: " + r);
+            case R.id.buttonGenerarNumero:
+                r =(int)(Math.random()*(max-min+1)+min);
+                victoria.setText("");
+                solucion.setText("");
+                textoContador.setText("");
+                contador=0;
+                text = String.valueOf(r);
+                duration = Toast.LENGTH_SHORT;
+                toast = Toast.makeText(context, text, duration);
+                toast.show();
                 break;
             case R.id.buttonSalir:
                 finish();

@@ -30,11 +30,11 @@
         app:layout_constraintTop_toBottomOf="@+id/numero" />
 
     <Button
-        android:id="@+id/buttonMostrarSolucion"
+        android:id="@+id/buttonGenerarNumero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/botonSolucion"
+        android:text="@string/generarNumero"
         app:backgroundTint="#FB0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,5 +77,5 @@
         android:text="@string/salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMostrarSolucion" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGenerarNumero" />
 </androidx.constraintlayout.widget.ConstraintLayout>
