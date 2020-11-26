@@ -2,4 +2,5 @@
     <string name="app_name">Numero</string>
     <string name="botonSolucion">Mostrar Solución</string>
     <string name="botonComprobar">Comprobar</string>
+    <string name="salir">Salir</string>
 </resources>

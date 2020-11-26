@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/numero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="219dp"
+        android:layout_height="49dp"
         android:layout_marginTop="184dp"
         android:ems="10"
         android:inputType="number"
@@ -21,10 +21,11 @@
         android:id="@+id/buttonComprobar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="44dp"
         android:text="@string/botonComprobar"
         app:backgroundTint="#034C03"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numero" />
 
@@ -32,7 +33,7 @@
         android:id="@+id/buttonMostrarSolucion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:text="@string/botonSolucion"
         app:backgroundTint="#FB0000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +42,40 @@
 
     <TextView
         android:id="@+id/solucion"
-        android:layout_width="0dp"
-        android:layout_height="7dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:layout_marginBottom="96dp"
+        android:layout_width="137dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toTopOf="@+id/numero"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/contador"
+        android:layout_width="130dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSalir" />
+
+    <TextView
+        android:id="@+id/victoria"
+        android:layout_width="156dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/solucion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSalir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/salir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMostrarSolucion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

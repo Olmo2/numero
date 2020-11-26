@@ -15,13 +15,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button botonComprobar;
     Button botonMostrar;
+    Button botonSalir;
     EditText numero;
     TextView solucion;
+    TextView textoContador;
+    TextView victoria;
 
-    int min=0;
+    int min=1;
     int max=1000;
     int r;
-    int n;
+    int n=-1;
+    int contador = 0;
 
     Context context;
     CharSequence text;
@@ -35,16 +39,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         botonComprobar = (Button) findViewById(R.id.buttonComprobar);
+        botonComprobar.setOnClickListener(this);
+        botonSalir = (Button) findViewById(R.id.buttonSalir);
+        botonSalir.setOnClickListener(this);
         botonMostrar = (Button) findViewById(R.id.buttonMostrarSolucion);
+        botonMostrar.setOnClickListener(this);
+
         numero  = (EditText) findViewById(R.id.numero);
         solucion  = (TextView) findViewById(R.id.solucion);
-        r =(int)Math.random()*(max-min+1)+min;
+        textoContador  = (TextView) findViewById(R.id.contador);
+        victoria  = (TextView) findViewById(R.id.victoria);
+
+        r =(int)(Math.random()*(max-min+1)+min);
         System.out.println(r);
 
         context = getApplicationContext();
-        text = "Número incorrecto";
+        text = String.valueOf(r);
         duration = Toast.LENGTH_SHORT;
-
+        toast = Toast.makeText(context, text, duration);
+        toast.show();
 
 
     }
@@ -61,21 +74,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.buttonComprobar:
-                n= Integer.parseInt(numero.getText().toString());
-               if(checkNumber(n)){
-                   solucion.setText("La solucion es: " + r);
-                   text = "¡Número Correcto!";
-               }else{
-                   text = "Número incorrecto";
-               }
 
-                toast = Toast.makeText(context, text, duration);
-                toast.show();
+            case R.id.buttonComprobar:
+                if(numero.getText().toString().equals("") || numero.getText().toString().equals(null)) {
+                    text = "Introduce un número entre 1 y 1000";
+                    } else {
+                    System.out.println("lol" + numero.getText().toString());
+                    n = Integer.parseInt(numero.getText().toString());
+                    if (n > 0 && n < 1001) {
+                        if (checkNumber(n)) {
+                            solucion.setText("La solucion es: " + r);
+                            text = "¡Número Correcto!";
+                            victoria.setText("¡Victoria!");
+                        } else {
+                            text = "Número incorrecto";
+                            contador++;
+                            textoContador.setText("Llevas: " + contador + " intentos");
+                            if(contador>=5){
+                                solucion.setText("La solucion era: " + r);
+                                victoria.setText("DERROTA, Alcanzaste el número máximo de intentos :(");
+                            }
+
+                        }
+                    }
+                    }
+
+                    toast = Toast.makeText(context, text, duration);
+                    toast.show();
 
                 break;
             case R.id.buttonMostrarSolucion:
                 solucion.setText("La solucion era: " + r);
+                break;
+            case R.id.buttonSalir:
+                finish();
+                break;
 
         }
 
