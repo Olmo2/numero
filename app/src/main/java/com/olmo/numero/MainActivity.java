@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             contador++;
                             restante = 5-contador;
                             alerta.setTitle("Número Incorrecto :( ");
-                            alerta.setMessage("Prueba otra vez, te quedan " + restante  + "intnetos");
+                            alerta.setMessage("Prueba otra vez, te quedan " + restante  + " intnetos");
                             textoContador.setText("Llevas: " + contador + " intentos");
                             if(contador>=5){
                                 alerta.setTitle("DERROTA");
